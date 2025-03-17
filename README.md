@@ -1,4 +1,4 @@
-# Practice Lab 1:  Quarto Review & Getting to know your classmates
+# Lab 1:  Quarto Review & Getting to know your classmates
 
 For the last two questions of this lab, you will need to use the Discord server
 or talk to your peers in class!
