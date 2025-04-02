@@ -152,7 +152,9 @@ mpg <- mpg %>%
     # Split on "(" and take the second piece (the substring after "(")
     trans_type = str_split(trans, "\\(", simplify = TRUE)[,2],
     # Remove the trailing ")" from that substring
-    trans_type = str_remove(trans_type, "\\)")
+    trans_type = str_remove(trans_type, "\\)"),
+    # Split on "(" and take the first pierce to get the transmission style
+    trans = str_split(trans, "\\(", simplify = TRUE)[,1],
   ) %>%
   # Rename 'trans' column to 'trans_style'
   rename(trans_style = trans)
