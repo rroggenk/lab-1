@@ -3207,11 +3207,40 @@ vertical-align: -.125em;
 <ol start="11" type="1">
 <li>The <code>fl</code> variable describes the type of fuel for each car, with levels: <code>p</code>, <code>r</code>, <code>e</code>, <code>d</code>, and <code>c</code>. Do some research into what each of these labels mean! Then, use the <code>if_else()</code> function to create a new variable (<code>fuel_type</code>) with two levels: <code>petrol</code> (any car using petrolium-based gas) and <code>alternative energy</code> (any car not using petrolium-based gas).</li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">fuel_type =</span> <span class="fu">if_else</span>(fl <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;p&quot;</span>, <span class="st">&quot;r&quot;</span>), </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;petrol&quot;</span>, </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                        <span class="st">&quot;alternative energy&quot;</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ol start="12" type="1">
-<li>The <code>drv</code> variable describes if the car has front drive (<code>f</code>), rear drive (<code>r</code>), or four wheel drive (<code>4</code>). Let’s make better labels for these values! Specifically, use the <code>case_when()</code> function to change the <code>drv</code> varible to have the following levels: <code>front</code>, <code>rear</code>, <code>four wheel</code>.</li>
+<li>The <code>drv</code> variable describes if the car has front drive (<code>f</code>), rear drive (<code>r</code>), or four wheel drive (<code>4</code>). Let’s make better labels for these values! Specifically, use the <code>case_when()</code> function to change the <code>drv</code> variable to have the following levels: <code>front</code>, <code>rear</code>, <code>four wheel</code>.</li>
 </ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">drv =</span> <span class="fu">case_when</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>      drv <span class="sc">==</span> <span class="st">&quot;f&quot;</span> <span class="sc">~</span> <span class="st">&quot;front&quot;</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>      drv <span class="sc">==</span> <span class="st">&quot;r&quot;</span> <span class="sc">~</span> <span class="st">&quot;rear&quot;</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>      drv <span class="sc">==</span> <span class="st">&quot;4&quot;</span> <span class="sc">~</span> <span class="st">&quot;four wheel&quot;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>(string split + remove extra “)” ) 13. The <code>trans</code> variable contains two pieces of information, (1) the transmission style (<code>auto</code> or <code>manual</code>) and the specific type of transmission (e.g., <code>l5</code>, <code>m5</code>). Using the <code>str_split()</code> function, create a new variable (<code>trans_type</code>) containing the specific type of transmission of each car. Once you’ve made this new variable, use the <code>rename()</code> function to change the name of the <code>trans</code> column to <code>trans_style</code>.<br>
 <em>Hint: You will need to deal with the stray parenthesis!</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>mpg <span class="ot">&lt;-</span> mpg <span class="sc">%&gt;%</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Split on &quot;(&quot; and take the second piece (the substring after &quot;(&quot;)</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans_type =</span> <span class="fu">str_split</span>(trans, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">(&quot;</span>, <span class="at">simplify =</span> <span class="cn">TRUE</span>)[,<span class="dv">2</span>],</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Remove the trailing &quot;)&quot; from that substring</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">trans_type =</span> <span class="fu">str_remove</span>(trans_type, <span class="st">&quot;</span><span class="sc">\\</span><span class="st">)&quot;</span>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Rename &#39;trans&#39; column to &#39;trans_style&#39;</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">trans_style =</span> trans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="getting-to-know-your-classmates" class="level2">
 <h2 class="anchored" data-anchor-id="getting-to-know-your-classmates">Getting to know your classmates</h2>
