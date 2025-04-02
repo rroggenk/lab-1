@@ -4,10 +4,9 @@ author: "Rachel Roggenkemper"
 format: html
 embed-resources: true
 editor: source
-  markdown: 
-    wrap: 72
 execute: 
   echo: true
+  warning: false
 ---
 
 ```{r}
@@ -21,19 +20,26 @@ library(ggridges)
 
 First, let's make sure you know how to use Markdown formatting to style a Quarto document.
 
-1.  Make this text bold.
+1.  **Make this text bold.**
 
-2.  Make this text italicized.
+2.  *Make this text italicized.*
 
 3.  Make these into a bullet point list:
 
-Apples Bananas Potatoes
+-   Apples
+
+-   Bananas
+
+-   Potatoes
 
 4.  Edit the YAML to remove warning messages from being output in the rendered HTML file
 
 5.  Using code chunk options, make it so this chunk shows the plot but not the source code:
 
 ```{r}
+#| label: question 5
+#| echo: false
+
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
   geom_boxplot() +
@@ -46,6 +52,9 @@ ggplot(data = mpg,
 6.  Using code chunk options, remove the messages about bandwidth `geom_density_ridges()` chose to use:
 
 ```{r}
+#| label: question 6
+#| message: false
+
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
   geom_density_ridges() +
@@ -58,7 +67,8 @@ ggplot(data = mpg,
 7.  Using code chunk options, make it so that these plots are printed side-by-side:
 
 ```{r}
-
+#| label: question 7
+#| layout-nrow: 1
 ggplot(data = mpg, 
        mapping = aes(y = manufacturer, x = hwy)) + 
   geom_boxplot() +
@@ -80,12 +90,18 @@ ggplot(data = mpg,
 8.  Using code chunk options, make it so this chunk shows the code but not the output:
 
 ```{r}
+#| label: question 8
+#| output: false
+
 2 + 2
 ```
 
 9.  Using code chunk options, make it so the file can still knit even though this chunk has an error
 
 ```{r}
+#| label: question 9
+#| eval: false
+
 2 + a
 ```
 
