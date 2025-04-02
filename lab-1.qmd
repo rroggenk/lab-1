@@ -116,6 +116,8 @@ For these problems, we will continue to work with the `mpg` data frame, making v
 11. The `fl` variable describes the type of fuel for each car, with levels: `p`, `r`, `e`, `d`, and `c`. Do some research into what each of these labels mean! Then, use the `if_else()` function to create a new variable (`fuel_type`) with two levels: `petrol` (any car using petrolium-based gas) and `alternative energy` (any car not using petrolium-based gas).
 
 ```{r}
+#| label: question 11
+
 mpg <- mpg %>%
   mutate(
     fuel_type = if_else(fl %in% c("p", "r"), 
@@ -127,6 +129,8 @@ mpg <- mpg %>%
 12. The `drv` variable describes if the car has front drive (`f`), rear drive (`r`), or four wheel drive (`4`). Let's make better labels for these values! Specifically, use the `case_when()` function to change the `drv` variable to have the following levels: `front`, `rear`, `four wheel`.
 
 ```{r}
+#| label: question 12
+
 mpg <- mpg %>%
   mutate(
     drv = case_when(
@@ -137,10 +141,12 @@ mpg <- mpg %>%
   )
 ```
 
-(string split + remove extra ")" ) 13. The `trans` variable contains two pieces of information, (1) the transmission style (`auto` or `manual`) and the specific type of transmission (e.g., `l5`, `m5`). Using the `str_split()` function, create a new variable (`trans_type`) containing the specific type of transmission of each car. Once you've made this new variable, use the `rename()` function to change the name of the `trans` column to `trans_style`.\
-*Hint: You will need to deal with the stray parenthesis!*
+13. The `trans` variable contains two pieces of information, (1) the transmission style (`auto` or `manual`) and the specific type of transmission (e.g., `l5`, `m5`). Using the `str_split()` function, create a new variable (`trans_type`) containing the specific type of transmission of each car. Once you've made this new variable, use the `rename()` function to change the name of the `trans` column to `trans_style`.\
+    *Hint: You will need to deal with the stray parenthesis!* (string split + remove extra ")" )
 
 ```{r}
+#| label: question 13
+
 mpg <- mpg %>%
   mutate(
     # Split on "(" and take the second piece (the substring after "(")
@@ -156,4 +162,17 @@ mpg <- mpg %>%
 
 14. Find someone who took Stat 331 from a different professor than you. Compare your experiences. Tell me their name and professor. List one or two things that you think you learned more about, and one or two things that they learned more about.
 
+    Liam took Stat 331 with the queen herself, Em-Dawg. I took it with the Quarto Queen Dr. Theobold. We both had a blast, best class ever. I had it on Zoom, so I probably learned more about learning on Zoom. I learned more about data wrangling, because I wrangled that data. Liam learned that a lot about tidyverse. Samesies. Live, laugh, love tidyverse. Liam learned more about which color pallette are color vision deficient friendly.
+
 15. Find someone in the class who **does not** share your birth month. Tell me their name and birthday, and use R to find out how many days apart your birthdays are.
+
+Lily "the GOAT" Cook, birthday is July 11, 2002 (7-eleven)
+
+```{r}
+#| label: question 15
+
+start_date <- as.Date("2002-07-11")
+end_date   <- as.Date("2002-08-14")
+num_days <- end_date - start_date
+num_days
+```
